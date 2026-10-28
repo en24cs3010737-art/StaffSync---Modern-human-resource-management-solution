@@ -1,0 +1,30 @@
+name: StaffSync CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify Node.js
+        run: node --version
+
+      - name: Verify npm
+        run: npm --version
+
+      - name: List repository files
+        run: ls -la
